@@ -1,0 +1,4 @@
+defaultdict(<class 'list'>, {'patient': ['patient', 'patient', 'patient', 'Patient', 'patient', 'patient', 'Patient', 'patient', 'patient', 'patient', 'patient']})
+defaultdict(<class 'list'>, {'protein': ['protein', 'Protein', 'protein', 'protein', 'protein', 'protein', 'protein', 'protein', 'protein', 'protein', 'protein']})
+{'patient': ['patient', 'patient', 'patient', 'Patient', 'patient', 'patient', 'Patient', 'patient', 'patient', 'patient', 'patient']}
+{'protein': ['protein', 'Protein', 'protein', 'protein', 'protein', 'protein', 'protein', 'protein', 'protein', 'protein', 'protein']}
