@@ -1,3 +1,4 @@
+import json
 import pickle
 import re
 import asyncio
@@ -67,12 +68,19 @@ async def get_phrases_occurrences(query):
 async def main():
     with open("data/nodes_10%_high.pkl", 'rb') as f:
         queries = list(pickle.load(f).keys())
-    queries = queries[:2]
+    # queries = queries[:2]
     all_results = defaultdict(list)
     total_queries = len(queries)
-    with open("output/phrases_with_occurrences.txt", "w") as f:
+    done_queries = set()
+    with open("output/phrases_with_occurrences.txt", "r") as f:
+        for line in f.readlines():
+            phrase = set(eval(line.strip()).keys())
+            done_queries = done_queries.union(phrase)
+    with open("output/phrases_with_occurrences.txt", "a") as f:
         with tqdm(total=total_queries) as overall_progress:
             for query in queries:
+                if query in done_queries:
+                    continue
                 results = await get_phrases_occurrences(query)
                 for key, value in results.items():
                     all_results[key].extend(value)
