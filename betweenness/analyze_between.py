@@ -39,5 +39,7 @@ else:
         except:
             print("error file ", between_file)
 
-    with open("analysis/result.pkl", "wb") as f:
+    output_dir = "analysis"
+    os.makedirs(output_dir, exist_ok=True)
+    with open(os.path.join(output_dir, "result.pkl"), "wb") as f:
         pickle.dump(pairs, f)
