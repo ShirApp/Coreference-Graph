@@ -23,7 +23,12 @@ else:
 
 batch_size = 100
 
-with open("output/chains.txt", "w") as f_chains, open("output/indices_chains.json", "w") as f_indices:
+output_dir = "output"
+os.makedirs(output_dir, exist_ok=True)
+
+# Open the output files
+with open(os.path.join(output_dir, "chains_batch.txt"), "w") as f_chains, \
+        open(os.path.join(output_dir, "indices_chains_batch.json"), "w") as f_indices:
 
     for i in range(0, len(abstracts_text), batch_size):
 
