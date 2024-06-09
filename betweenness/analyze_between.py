@@ -7,8 +7,10 @@ from tqdm import tqdm
 
 file_graph_clean = "data/weighted_graph_clean2.csv"
 
-if os.path.exists(file_graph_clean):
+if not os.path.exists(file_graph_clean):
+    print(os.listdir("data"))
 
+else:
     df = pd.read_csv(file_graph_clean)
     pairs_dict = []
 
