@@ -5,7 +5,11 @@ from collections import defaultdict
 import pandas as pd
 from tqdm import tqdm
 
-file_graph_clean = "data/weighted_graph_clean2.csv"
+debug = True if os.path.exists("/Users/shir/PycharmProjects") else False
+if debug:
+    file_graph_clean = "data/weighted_graph_clean2.csv"
+else:
+    file_graph_clean = "/home/nlp/shirash1/Coreference-Graph/betweenness/data/weighted_graph_clean2.csv"
 
 if not os.path.exists(file_graph_clean):
     print(os.listdir("data"))
