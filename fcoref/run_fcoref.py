@@ -1,10 +1,21 @@
+import argparse
 import json
 import os
 from fastcoref import FCoref
 from datasets import load_dataset, DownloadConfig
+from tqdm import tqdm
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--device', type=int, required=True,)
+parser.add_argument('--out_file', type=str, required=True)
+
+args = parser.parse_args()
+device: int = args.device
+out_file: str = args.out_file
+
+print("Running-- device:", device, ", out_file=", out_file,)
 
 debug = True if os.path.exists("/Users/shir/PycharmProjects") else False
-
 if debug:
     dataset = load_dataset("datajuicer/the-pile-pubmed-abstracts-refined-by-data-juicer")
     model = FCoref()
@@ -17,20 +28,20 @@ else:
         split="train",
         download_config=DownloadConfig(delete_extracted=True),
     )
-
-    model = FCoref(device='cuda:0')
+    device_num = 'cuda:' + str(device)
+    model = FCoref(device=device_num)
     abstracts_text = dataset['text']
 
-batch_size = 100
+batch_size = 1024
 
 output_dir = "output"
 os.makedirs(output_dir, exist_ok=True)
 
 # Open the output files
-with open(os.path.join(output_dir, "chains_batch.txt"), "w") as f_chains, \
-        open(os.path.join(output_dir, "indices_chains_batch.json"), "w") as f_indices:
+with open(os.path.join(output_dir, "chains__" + out_file + ".txt"), "w") as f_chains, \
+        open(os.path.join(output_dir, "indices_chains__" + out_file + ".json"), "w") as f_indices:
 
-    for i in range(0, len(abstracts_text), batch_size):
+    for i in tqdm(range(0, len(abstracts_text), batch_size)):
 
         batch = abstracts_text[i:i + batch_size]
 
