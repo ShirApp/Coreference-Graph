@@ -10,7 +10,9 @@ with open("analysis/result.pkl", "rb") as f:
         vals = v.values()
         max_val = max(vals)
         total_val = sum(vals)/len(vals)
-        if max_val/total_val > THRESHOLD:
+        if total_val == 0 or max_val/total_val < THRESHOLD:
+            unknown[k] = v
+        else:
             max_ind = list(v.values()).index(max_val)
             if max_ind == 0:
                 final_pairs[k] = "H"
@@ -18,9 +20,6 @@ with open("analysis/result.pkl", "rb") as f:
                 final_pairs[(k[1], k[0])] = "H"
             else:   # == '2'
                 final_pairs[k] = "I"
-        else:
-            unknown[k] = v
-    # print()
 
     output_dir = "./decision"
     os.makedirs(output_dir, exist_ok=True)
