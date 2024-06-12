@@ -9,8 +9,9 @@ with open(file_path, "rb") as f:
     for k, v in d.items():
         vals = v.values()
         max_val = max(vals)
-        if max_val > 0:
-            total_max = min(max_val, total_max)
+        if max_val > 0 and max_val < total_max:
+            total_max = max_val
+            print(max_val, d)
 
 print(total_max)
 print(total_max/52)
