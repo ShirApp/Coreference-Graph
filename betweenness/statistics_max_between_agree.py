@@ -6,12 +6,14 @@ with open(file_path, "rb") as f:
     final_pairs = dict()
     unknown = dict()
     total_max = 52
+    x = 0
     for k, v in d.items():
         vals = v.values()
         max_val = max(vals)
         if max_val > 0 and max_val < total_max:
-            total_max = max_val
-            print(max_val, d)
+            total_max = min(max_val, total_max)
+            x = vals
+        #     print(max_val, d)
 
-print(total_max)
-print(total_max/52)
+print(total_max, vals)
+# print(total_max/52)
