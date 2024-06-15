@@ -45,18 +45,21 @@ with open(nodes_dir, 'rb') as f:
 print("in", c_in, "out", c_out)
 
 tags_dict = defaultdict()
+
 for k, v in temp_dict.items():
-    strings = v.keys()
+    done = False
+    strings = list(v.keys())
     for s in strings:
         if s[0].islower():
             tags_dict[k] = "noun"
-            continue
-    dominant_str = max(v, key=v.get)
-    # print(dominant_str)
-    if dominant_str.isupper() and dominant_str.isalpha():
-        tags_dict[k] = "abb"
-        continue
-    tags_dict[k] = "name"
+            done = True
+            break
+    if not done:
+        dominant_str = max(v, key=v.get)
+        if dominant_str.isupper() and dominant_str.isalpha():
+            tags_dict[k] = "abb"
+        else:
+            tags_dict[k] = "name"
 
 output_dir = "./output_tags"
 os.makedirs(output_dir, exist_ok=True)
