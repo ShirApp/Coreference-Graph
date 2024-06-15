@@ -20,3 +20,4 @@ with open(path, "rb") as f:
 
 print(all_max)
 print(min_max)
+print(sum([v for k, v in all_max.items() if int(k) > 34]))
