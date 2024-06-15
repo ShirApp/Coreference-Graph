@@ -1,19 +1,22 @@
+import os
 import pickle
+from collections import defaultdict
 
-file_path = "/home/nlp/shirash1/Coreference-Graph/betweenness/analysis/result.pkl"
-with open(file_path, "rb") as f:
+THRESHOLD = 2/3
+debug = True if os.path.exists("/Users/shir/PycharmProjects") else False
+if debug:
+    path = "analysis/result.pkl"
+else:
+    path = "/home/nlp/shirash1/Coreference-Graph/betweenness/analysis/result.pkl"
+with open(path, "rb") as f:
     d = pickle.load(f)
-    final_pairs = dict()
-    unknown = dict()
-    total_max = 52
-    x = 0
+    all_max = defaultdict(int)
+    min_max = 1
     for k, v in d.items():
         vals = v.values()
         max_val = max(vals)
-        if max_val > 0 and max_val < total_max:
-            total_max = min(max_val, total_max)
-            x = vals
-        #     print(max_val, d)
+        all_max[max_val] += 1
+        min_max = min(min_max, max_val/sum(vals)) if max_val > 0 else min_max
 
-print(total_max, vals)
-# print(total_max/52)
+print(all_max)
+print(min_max)
