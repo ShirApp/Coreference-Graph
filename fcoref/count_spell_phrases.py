@@ -2,6 +2,7 @@ import os
 import pickle
 from collections import defaultdict
 
+from tqdm import tqdm
 
 debug = True if os.path.exists("/Users/shir/PycharmProjects") else False
 if debug:
@@ -14,7 +15,7 @@ else:
 
 with open(os.path.join(output_dir, "chains" + out_file + ".txt"), "r") as f_chains:
     dict_spell = defaultdict(dict)
-    for line in f_chains.readlines():
+    for line in tqdm(f_chains.readlines()):
         chain = line[:-1].split('\t')
         lower_chain = [ph.lower() for ph in chain]
         for ind in range(len(chain)):
