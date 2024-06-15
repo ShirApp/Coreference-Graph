@@ -1,5 +1,7 @@
 import os
 import pickle
+from collections import defaultdict
+from tqdm import tqdm
 
 debug = True if os.path.exists("/Users/shir/PycharmProjects") else False
 if debug:
@@ -18,12 +20,23 @@ with open(os.path.join(output_dir, "dict_spell" + out_file + ".pkl"), "rb") as f
 
 c_in = 0
 c_out = 0
+temp_dict = defaultdict(dict)
 with open(nodes_dir, 'rb') as f:
     all_nodes = list(pickle.load(f))
-    for node in all_nodes:
+    for node in tqdm(all_nodes):
         if node in dict_spell:
+            temp_dict[node] = dict_spell[node]
             c_in += 1
         else:
             c_out += 1
+            for k in dict_spell.keys():
+                if len(node.split()) == 1:
+                    if node in k.split():
+                        print(node, "|", k)
+                        break
+                else:
+                    if node in k:
+                        print(node, "|", k)
+                        break
 
 print("in", c_in, "out", c_out)
