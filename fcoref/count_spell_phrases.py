@@ -9,8 +9,8 @@ if debug:
     output_dir = "output"
     out_file = ""
 else:
-    output_dir = "/home/nlp/shirash1/Coreference-Graph/fcoref/output"
-    out_file = "1"
+    output_dir = "/home/nlp/shirash1/Coreference-Graph/output"
+    out_file = "__1"
 
 
 with open(os.path.join(output_dir, "chains" + out_file + ".txt"), "r") as f_chains:
