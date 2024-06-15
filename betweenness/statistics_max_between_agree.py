@@ -3,6 +3,7 @@ import pickle
 from collections import defaultdict
 
 THRESHOLD = 2/3
+NUM_OF_RUNS = 52
 debug = True if os.path.exists("/Users/shir/PycharmProjects") else False
 if debug:
     path = "analysis/result.pkl"
@@ -20,4 +21,4 @@ with open(path, "rb") as f:
 
 print(all_max)
 print(min_max)
-print(sum([v for k, v in all_max.items() if int(k) > 34]))
+print(sum([v for k, v in all_max.items() if int(k) <= THRESHOLD*NUM_OF_RUNS])/sum([v for k, v in all_max.items()]))
