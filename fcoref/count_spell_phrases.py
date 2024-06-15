@@ -2,8 +2,15 @@ import os
 import pickle
 from collections import defaultdict
 
-output_dir = "output"
-out_file = ""
+
+debug = True if os.path.exists("/Users/shir/PycharmProjects") else False
+if debug:
+    output_dir = "output"
+    out_file = ""
+else:
+    output_dir = "/home/nlp/shirash1/Coreference-Graph/fcoref/output"
+    out_file = "1"
+
 
 with open(os.path.join(output_dir, "chains" + out_file + ".txt"), "r") as f_chains:
     dict_spell = defaultdict(dict)
