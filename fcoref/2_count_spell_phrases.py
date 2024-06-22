@@ -23,7 +23,7 @@ with open(os.path.join(output_dir, "chains" + out_file + ".txt"), "r") as f_chai
                 dict_spell[lower_chain[ind]][chain[ind]] = 0
             dict_spell[lower_chain[ind]][chain[ind]] += 1
 
-print(dict_spell)
+# print(dict_spell)
 output_dir = "./output_spell"
 os.makedirs(output_dir, exist_ok=True)
 

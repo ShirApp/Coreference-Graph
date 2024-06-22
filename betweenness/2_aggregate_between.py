@@ -24,10 +24,10 @@ else:
         ph1 = row['node1']
         ph2 = row['node2']
         pairs[(ph1, ph2)] = {"1": 0, "2": 0, "0": 0}
-        # if len(pairs) > 10000:
-        #     break
+        if len(pairs) > 100:
+            break
 
-    between_path = "output/"
+    between_path = "/home/nlp/shirash1/Coreference-Graph/betweenness/output/"
     for between_file in tqdm(os.listdir(between_path)):
         try:
             with open(between_path + between_file, "r") as f:
