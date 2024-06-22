@@ -56,6 +56,7 @@ tags_dict = defaultdict()
 
 for k, v in temp_dict.items():
     strings = list(v.keys())
+    done = False
     for s in strings:
         if s.isupper() and s.isalpha():
             tags_dict[k] = "abb"
@@ -65,7 +66,8 @@ for k, v in temp_dict.items():
             tags_dict[k] = "noun"
             done = True
             break
-    tags_dict[k] = "name"
+    if not done:
+        tags_dict[k] = "name"
 
 output_dir = "./output_tags"
 os.makedirs(output_dir, exist_ok=True)
