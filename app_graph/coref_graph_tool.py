@@ -63,12 +63,12 @@ def main():
 
     st.sidebar.title('Coreference Graph')
     query_phrase = st.sidebar.text_input("**Query:**")
-    surprise_button = st.sidebar.button('Surprise Me!')
 
-    if surprise_button:
-        random_query = random.choice(unique_ph)
-        st.sidebar.write(f"**Querying:** {random_query}...")
-        query_dict(random_query)
+    # surprise_button = st.sidebar.button('Surprise Me!')
+    # if surprise_button:
+    #     random_query = random.choice(unique_ph)
+    #     st.sidebar.write(f"**Querying:** {random_query}...")
+    #     query_dict(random_query)
     if query_phrase:
         query_dict(query_phrase.lower())
         if len(nodes) == 0:
@@ -86,9 +86,9 @@ def main():
 
 
 if __name__ == '__main__':
-    dict_com_file = "app_graph/data/dict_com_updated1.pkl"
-    phrase2id_file = "/Users/shir/PycharmProjects/Coreference-Graph/app_graph/data/phrase2id_updated1.pkl"
-    children_file = "/Users/shir/PycharmProjects/Coreference-Graph/app_graph/data/children_updated.pkl"
+    dict_com_file = "data/dict_com_updated1.pkl"
+    phrase2id_file = "data/phrase2id_updated1.pkl"
+    children_file = "data/children_updated.pkl"
     NODE_SIZE = 10
 
     nodes = []
